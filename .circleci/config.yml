@@ -1,0 +1,30 @@
+version: 2.1
+orbs:
+  node: circleci/node@14.15.1
+  aws-cli: circleci/aws-cli@2.4.24
+
+jobs:
+  deployment:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - node/install
+      - checkout
+      - aws-cli/setup
+      - run:
+          name: Install Frontend Dependencies
+          command: npm run frontend.install
+      - run:
+          name: Frontend Test
+          command: npm run frontend.test
+      - run:
+          name: Frontend test e2e
+          command: npm run frontend.e2e
+      - run:
+          name: Frontend deploy
+          command: npm run frontend.deploy
+workflows:
+  udagram:
+    jobs:
+      - build
+      - deploy
