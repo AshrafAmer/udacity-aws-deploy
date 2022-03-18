@@ -16,7 +16,7 @@ jobs:
           name: Install Server Dependencies
           command: npm run backend.install
       - run:
-          name: Install Dependencies
+          name: Install Frontend Dependencies
           command: npm run frontend.install
       - run:
           name: Test
