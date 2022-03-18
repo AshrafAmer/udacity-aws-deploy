@@ -12,16 +12,19 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
-          name: Install Frontend Dependencies
+          name: Install Dependencies
           command: npm run frontend.install
       - run:
-          name: Frontend Test
+          name: Test
           command: npm run frontend.test
       - run:
-          name: Frontend test e2e
+          name: test e2e
           command: npm run frontend.e2e
       - run:
-          name: Frontend deploy
+          name: build
+          command: npm run frontend.build
+      - run:
+          name: deploy to aws
           command: npm run frontend.deploy
 workflows:
     jobs:
