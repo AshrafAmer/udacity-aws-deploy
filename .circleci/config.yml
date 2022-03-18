@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  node: circleci/node@5.0.0
+  node: circleci/node@4.1.0
   aws-cli: circleci/aws-cli@2.0.6
 
 jobs:
-  deployment:
+  build:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -12,20 +12,20 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
+          name: Install Server Dependencies
+          command: npm run backend.install
+      - run:
           name: Install Dependencies
           command: npm run frontend.install
       - run:
           name: Test
           command: npm run frontend.test
       - run:
-          name: test e2e
-          command: npm run frontend.e2e
+          name: Build Server
+          command: npm run backend.build
       - run:
-          name: build
+          name: build Frontend
           command: npm run frontend.build
       - run:
           name: deploy to aws
           command: npm run frontend.deploy
-workflows:
-    jobs:
-      - deploy
