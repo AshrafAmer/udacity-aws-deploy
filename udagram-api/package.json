@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp -rf src/migrations www/migrations && cp -rf node_modules www/node_modules && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "start": "node server.js",
+    "deploy": "chmod +x bin/deploy.sh && bin/deploy.sh",
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
     "prod": "node ./www/server.js",

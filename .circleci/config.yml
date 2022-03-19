@@ -2,7 +2,13 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.0
   aws-cli: circleci/aws-cli@2.0.6
+  aws-ebcli: circleci/aws-elastic-beanstalk@2.0.1
 
+triggers:
+  - filters:
+      branches:
+        only:
+          - main
 jobs:
   build:
     docker:
@@ -12,6 +18,7 @@ jobs:
         node-version: '14.15.1'
       - checkout
       - aws-cli/setup
+      - aws-ebcli/setup
       - run:
           name: Install Server Dependencies
           command: npm run backend.install
@@ -31,5 +38,9 @@ jobs:
           name: Desplay AWS Configure
           command: aws configure list
       - run:
-          name: deploy to aws
+          name: deploy frontend to aws
           command: npm run frontend.deploy
+
+      - run:
+          name: deploy backend API to aws
+          command: npm run backend.deploy
