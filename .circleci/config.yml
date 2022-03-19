@@ -29,5 +29,8 @@ jobs:
           name: build Frontend
           command: npm run frontend.build
       - run:
+          name: Desplay AWS Configure
+          command: aws configure list
+      - run:
           name: deploy to aws
           command: npm run frontend.deploy
