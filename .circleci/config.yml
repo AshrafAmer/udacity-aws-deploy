@@ -11,10 +11,11 @@ jobs:
       - node/install:
         node-version: '14.15.1'
       - checkout
-      - aws-cli/setup
-      - run:
-          name: AWS configure
-          command: set AWS_REGION="eu-west-1" && aws configure list
+      - aws-cli/setup:
+          aws-access-key-id: ASIA5K7GZ5KOT4UTDWVK 
+          aws-secret-access-key: dRBZSAsXm9TtiNTV7BTt/i8bSjUeKg0rYwsoA6sk
+          aws_session_token: FwoGZXIvYXdzEGEaDCVB8u3vC+hRzChGZSK8AUB2/3wQ1+8fz7uJhAoBaEDZAGuXlrwSM059AeAauIlq9eACwZJywAP6Y944mMuEcF2buk8Cq6V9WADOaFmwAyGpqISRZc/jBoBa3k79h9BSQV2FLNcgW6oqwM1Tw0iPutPEIBa/s9JAFAwM5gnNW7gYCb98V0y+EOe+8j9iprBaQoRwqmBHvbQZwW0QTyvAMn61CH4rEI7WdYsdEZQp1w618oAgR0d7Q1lj/XFz2rTx5iCMET5yBR/S9jwzKMWy1JEGMi3H8ZJzGnKocntAgwI7pEMj0TQXc4JlxXhPYjHbz5SgLKMvS3PrB6KD9BZH9Us=
+          aws-region: eu-west-1
       - run:
           name: Install Server Dependencies
           command: npm run backend.install
