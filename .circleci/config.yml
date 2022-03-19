@@ -12,10 +12,7 @@ jobs:
       - node/install:
         node-version: '14.15.1'
       - checkout
-      - aws-cli/setup:
-          aws-access-key-id: AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
+      - aws-cli/setup
       - run:
           name: Install Server Dependencies
           command: npm run backend.install
